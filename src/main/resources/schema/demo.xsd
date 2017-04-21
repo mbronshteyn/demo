@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified"
+        targetNamespace="http://schema.mbroshteyn.com/platform/integration/common/datatypes/v1" >
+
+    <!-- ELEMENTS -->
+    <element name="User">
+        <complexType>
+            <sequence>
+                <element name="id" type="string" minOccurs="1"/>
+                <element name="firstName" type="string" minOccurs="1"/>
+                <element name="lastName" type="string" minOccurs="1" />
+            </sequence>
+        </complexType>
+    </element>
+</schema>
