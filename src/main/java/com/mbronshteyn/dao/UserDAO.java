@@ -9,4 +9,10 @@ import javax.annotation.Resource;
  */
 @Resource
 public interface UserDAO {
+
+    public void createUser( User user );
+    public void deleteUser( String userId );
+    public void updateUser( User user );
+    public User lookupUser( String userId );
+
 }
