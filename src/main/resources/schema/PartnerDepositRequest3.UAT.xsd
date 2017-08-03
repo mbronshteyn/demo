@@ -1,0 +1,662 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="http://ensenta.com/ECPartnerDepositRequest" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ensenta.com/ECPartnerDepositRequest">
+  <xs:element name="AcceptTerms">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="partnerId" type="xs:int"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="depositorIPAddress" type="xs:string"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="sessionStateId" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AcceptTermsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="AcceptTermsResult" type="tns:Response"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="Response">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ResponseCode" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ErrorResponseText" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="LocalizedMessageText" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetTerms">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="partnerId" type="xs:int"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="depositorIPAddress" type="xs:string"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="sessionStateId" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTermsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="GetTermsResult" type="tns:GetTermsResponse"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetTermsResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Response">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="TermsXhtml" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="StartBatch">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="startBatchRequest" type="tns:StartBatchRequest"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="StartBatchRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="ItemCount" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="TotalAmount" type="xs:decimal"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="AccountNumber" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BaseRequest">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="PartnerId" type="xs:int"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="DepositorIPAddress" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="SessionStateId" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StartBatchResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="StartBatchResult" type="tns:Response"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EndSession">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="partnerId" type="xs:int"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="depositorIPAddress" type="xs:string"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="sessionStateId" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EndSessionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="EndSessionResult" type="tns:Response"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCheckImage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="partnerId" type="xs:int"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="depositorIPAddress" type="xs:string"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="sessionStateId" type="xs:string"/>
+        <xs:element minOccurs="1" maxOccurs="1" name="checkSequenceNum" type="xs:int"/>
+        <xs:element minOccurs="1" maxOccurs="1" name="isFront" type="xs:boolean"/>
+        <xs:element minOccurs="1" maxOccurs="1" name="imageType" type="tns:CheckImageType"/>
+        <xs:element minOccurs="1" maxOccurs="1" name="pixelsWide" type="xs:int"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="CheckImageType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="jpeg"/>
+      <xs:enumeration value="bmp"/>
+      <xs:enumeration value="png"/>
+      <xs:enumeration value="gif"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="GetCheckImageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="GetCheckImageResult" type="tns:CheckImageResponse"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="CheckImageResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Response">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CheckBytes" type="xs:base64Binary"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetPreviewImage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="partnerId" type="xs:int"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="depositorIPAddress" type="xs:string"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="sessionStateId" type="xs:string"/>
+        <xs:element minOccurs="1" maxOccurs="1" name="checkImageViewType" type="tns:CheckImageViewType"/>
+        <xs:element minOccurs="1" maxOccurs="1" name="checkSequenceNum" type="xs:int"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="CheckImageViewType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Front"/>
+      <xs:enumeration value="Back"/>
+      <xs:enumeration value="Both"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="GetPreviewImageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="GetPreviewImageResult" type="tns:GetPreviewImageResponse"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetPreviewImageResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Response">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CheckImageInfo" type="tns:ArrayOfCheckImageInfo"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfCheckImageInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CheckImageInfo" nillable="true" type="tns:CheckImageInfo"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CheckImageInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CheckImage" type="xs:base64Binary"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="CheckImageViewType" type="tns:CheckImageViewType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UploadCheckImage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="uploadCheckImageRequest" type="tns:UploadCheckImageRequest"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="UploadCheckImageRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CheckImage" type="xs:base64Binary"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="CheckImageViewType" type="tns:CheckImageViewType"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="CheckSequence" type="xs:int"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UploadCheckImageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="UploadCheckImageResult" type="tns:UploadCheckImageResponse"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="UploadCheckImageResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Response">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="CheckImageViewType" type="tns:CheckImageViewType"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="ImageRiskFactors" type="tns:ArrayOfImageRiskFactor"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfImageRiskFactor">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ImageRiskFactor" nillable="true" type="tns:ImageRiskFactor"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ImageRiskFactor">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ImageRiskFactorId" type="xs:int"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="LocalizedImageRiskDescription" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EvaluateDeposit">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="evaluateDepositRequest" type="tns:EvaluateDepositRequest"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="EvaluateDepositRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="LocalDateTime" type="xs:dateTime"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="DepositToAccountNumberIndex" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="CheckSequenceNum" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="xs:decimal"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EvaluateDepositResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="EvaluateDepositResult" type="tns:EvaluateDepositResponse"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="EvaluateDepositResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Response">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="DocumentId" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="LocalizedFundsAvailTxt" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="OcrAmount" type="xs:decimal"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="DepositRiskFactors" type="tns:ArrayOfDepositRiskFactor"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="CheckSequenceNum" type="xs:int"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDepositRiskFactor">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DepositRiskFactor" nillable="true" type="tns:DepositRiskFactor"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DepositRiskFactor">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="RiskFactorId" type="xs:int"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="DepositRiskFactorDescription" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="IsConfirmable" type="xs:boolean"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="IsFixable" type="xs:boolean"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Severity" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="AffectedFields" type="tns:ArrayOfAffectedField"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfAffectedField">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AffectedField" type="tns:AffectedField"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AffectedField">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AccountNumber"/>
+      <xs:enumeration value="AccountHolderName"/>
+      <xs:enumeration value="InstitutionName"/>
+      <xs:enumeration value="CheckNumber"/>
+      <xs:enumeration value="PayeeName"/>
+      <xs:enumeration value="CourtesyAmount"/>
+      <xs:enumeration value="LegalAmount"/>
+      <xs:enumeration value="FrontSignature"/>
+      <xs:enumeration value="AuxOnUs"/>
+      <xs:enumeration value="EPC"/>
+      <xs:enumeration value="Routing"/>
+      <xs:enumeration value="OnUs"/>
+      <xs:enumeration value="EncodedAmount"/>
+      <xs:enumeration value="Codeline"/>
+      <xs:enumeration value="FractionCode"/>
+      <xs:enumeration value="CheckDate"/>
+      <xs:enumeration value="BackEndorsement"/>
+      <xs:enumeration value="BackImage"/>
+      <xs:enumeration value="FrontImage"/>
+      <xs:enumeration value="CustomerSuppliedAmount"/>
+      <xs:enumeration value="InstrumentType"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ConfirmDeposit">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="confirmDepositRequest" type="tns:ConfirmDepositRequest"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ConfirmDepositRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="DepositItemCorrections" type="tns:ArrayOfDepositItemCorrection"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="IsAllConfirmed" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDepositItemCorrection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DepositItemCorrection" nillable="true" type="tns:DepositItemCorrection"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DepositItemCorrection">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="DepositItemSequence" type="xs:int"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="NewAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="NewCodeLine" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ConfirmDepositResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="ConfirmDepositResult" type="tns:ConfirmDepositResponse"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ConfirmDepositResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Response"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DoDepositTransaction">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="partnerId" type="xs:int"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="depositorIPAddress" type="xs:string"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="sessionStateId" type="xs:string"/>
+        <xs:element minOccurs="1" maxOccurs="1" name="localDateTime" type="xs:dateTime"/>
+        <xs:element minOccurs="1" maxOccurs="1" name="amount" type="xs:decimal"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="codeLine" type="xs:string"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="email" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DoDepositTransactionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="DoDepositTransactionResult" type="tns:DoDepositTransactionResponse"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DoDepositTransactionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Response">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="MaskedAccountholderNumber" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="TransactionReceiptNumber" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="TransactionDateTime" type="xs:dateTime"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="Risks" type="tns:ArrayOfString"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfString">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CancelTransaction">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="partnerId" type="xs:int"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="depositorIPAddress" type="xs:string"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="sessionStateId" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelTransactionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="CancelTransactionResult" type="tns:CancelTransactionResponse"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="CancelTransactionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Response"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EmailReceipt">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="partnerId" type="xs:int"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="depositorIPAddress" type="xs:string"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="sessionStateId" type="xs:string"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="emailTo" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EmailReceiptResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="EmailReceiptResult" type="tns:Response"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAccountTransactionHistory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="partnerId" type="xs:int"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="depositorIPAddress" type="xs:string"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="sessionStateId" type="xs:string"/>
+        <xs:element minOccurs="1" maxOccurs="1" name="numberOfDays" type="xs:int"/>
+        <xs:element minOccurs="1" maxOccurs="1" name="maxNumberofTransactions" type="xs:int"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAccountTransactionHistoryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="GetAccountTransactionHistoryResult" type="tns:GetAccountTransactionHistoryResponse2"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetAccountTransactionHistoryResponse2">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Response">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="TransactionList" type="tns:ArrayOfTransactionSummary"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfTransactionSummary">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TransactionSummary" nillable="true" type="tns:TransactionSummary"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TransactionSummary">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="TransactionId" type="xs:int"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="TransactionDtTm" type="xs:dateTime"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ReceiptReferenceNo" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="SubmittedAmount" type="xs:decimal"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="CorrectedAmount" type="xs:decimal"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="AdjustmentAmount" type="xs:decimal"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="CurrentAmount" type="xs:decimal"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="NumberofChecks" type="xs:int"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Status" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountNumber" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountHolderNumber" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="TransactionType" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="AcceptBy" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetAccountTransactionHistoryDetail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="partnerId" type="xs:int"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="depositorIPAddress" type="xs:string"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="sessionStateId" type="xs:string"/>
+        <xs:element minOccurs="1" maxOccurs="1" name="transactionId" type="xs:int"/>
+        <xs:element minOccurs="1" maxOccurs="1" name="checkSequenceNum" type="xs:int"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAccountTransactionHistoryDetailResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="GetAccountTransactionHistoryDetailResult" type="tns:GetAccountTransactionHistoryDetailResponse"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetAccountTransactionHistoryDetailResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Response">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="DepositHistoryItems" type="tns:ArrayOfDepositHistory"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="DepositBatchDescription" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="ReceiptNumber" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="TotalAmount" type="xs:decimal"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="TransactionType" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="TransactionDateTime" type="xs:dateTime"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="InstitutionDescription" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="AcctHolderNumber" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="AccountNumber" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="TransactionStatus" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDepositHistory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DepositHistory" nillable="true" type="tns:DepositHistory"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DepositHistory">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="DepositItemId" type="xs:int"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="DepositCheckSequenceNumber" type="xs:int"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="CheckNumber" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="AdjustmentAmount" type="xs:decimal"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="SubmittedAmount" type="xs:decimal"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="CurrentAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="FundsAvailability" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="CheckFrontImage" type="xs:base64Binary"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="CheckBackImage" type="xs:base64Binary"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetAccountTransactionHistory3">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="partnerId" type="xs:int"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="depositorIPAddress" type="xs:string"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="sessionStateId" type="xs:string"/>
+        <xs:element minOccurs="1" maxOccurs="1" name="numberOfDays" type="xs:int"/>
+        <xs:element minOccurs="1" maxOccurs="1" name="maxNumberofTransactions" type="xs:int"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAccountTransactionHistory3Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="GetAccountTransactionHistory3Result" type="tns:GetAccountTransactionHistoryResponse3"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetAccountTransactionHistoryResponse3">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Response">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="TransactionList" type="tns:ArrayOfTransactionSummary3"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfTransactionSummary3">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TransactionSummary3" nillable="true" type="tns:TransactionSummary3"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TransactionSummary3">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:TransactionSummary">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="AcceptedByDescr" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="ChannelType" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="ChannelTypeDescr" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="StatusChgDtTm" type="xs:dateTime"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="StatusDescr" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetAccountTransactionHistoryDetail3">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="partnerId" type="xs:int"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="depositorIPAddress" type="xs:string"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="sessionStateId" type="xs:string"/>
+        <xs:element minOccurs="1" maxOccurs="1" name="transactionId" type="xs:int"/>
+        <xs:element minOccurs="1" maxOccurs="1" name="checkSequenceNum" type="xs:int"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAccountTransactionHistoryDetail3Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="GetAccountTransactionHistoryDetail3Result" type="tns:GetAccountTransactionHistoryDetailResponse3"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetAccountTransactionHistoryDetailResponse3">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Response">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="DepositHistoryItems" type="tns:ArrayOfDepositHistory3"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="DepositBatchDescription" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="ReceiptNumber" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="TotalAmount" type="xs:decimal"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="TransactionType" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="TransactionDateTime" type="xs:dateTime"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="InstitutionDescription" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="AcctHolderNumber" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="AccountNumber" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="TransactionStatus" type="xs:string"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="TransactionTypeDescr" type="xs:string"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="StatusChgDtTm" type="xs:dateTime"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="NumberofChecks" type="xs:int"/>
+          <xs:element minOccurs="1" maxOccurs="1" name="ChannelType" type="xs:int"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="ChannelTypeDescr" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDepositHistory3">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DepositHistory3" nillable="true" type="tns:DepositHistory3"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DepositHistory3">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DepositHistory">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="StatusDescr" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetAccountTransactionCheckImage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="partnerId" type="xs:int"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="depositorIPAddress" type="xs:string"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="sessionStateId" type="xs:string"/>
+        <xs:element minOccurs="1" maxOccurs="1" name="transactionId" type="xs:int"/>
+        <xs:element minOccurs="1" maxOccurs="1" name="checkSequenceNumber" type="xs:int"/>
+        <xs:element minOccurs="1" maxOccurs="1" name="checkImageType" type="tns:CheckImageType"/>
+        <xs:element minOccurs="1" maxOccurs="1" name="checkImageViewType" type="tns:CheckImageViewType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAccountTransactionCheckImageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="GetAccountTransactionCheckImageResult" type="tns:GetAccountTransactionCheckImageResponse"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetAccountTransactionCheckImageResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Response">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CheckFrontImage" type="xs:base64Binary"/>
+          <xs:element minOccurs="0" maxOccurs="1" name="CheckBackImage" type="xs:base64Binary"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

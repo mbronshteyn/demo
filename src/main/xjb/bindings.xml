@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jxb:bindings xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+               xmlns:xs="http://www.w3.org/2001/XMLSchema"
+               version="1.0">
+    <jxb:bindings schemaLocation="../resources/schema/PartnerDepositRequest3.UAT.xsd" node="/xs:schema">
+        <jxb:bindings node="//xs:complexType[@name='GetAccountTransactionCheckImageResponse']">
+            <jxb:class name="GetAccountTransactionCheckImageResponseType"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='GetAccountTransactionHistoryDetailResponse']">
+            <jxb:class name="GetAccountTransactionHistoryDetailResponseType"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='CancelTransactionResponse']">
+            <jxb:class name="CancelTransactionResponseType"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='DoDepositTransactionResponse']">
+            <jxb:class name="DoDepositTransactionResponseType"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='ConfirmDepositResponse']">
+            <jxb:class name="ConfirmDepositResponseType"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='EvaluateDepositResponse']">
+            <jxb:class name="EvaluateDepositResponseType"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='UploadCheckImageResponse']">
+            <jxb:class name="UploadCheckImageResponseType"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='GetPreviewImageResponse']">
+            <jxb:class name="GetPreviewImageResponseType"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='GetTermsResponse']">
+            <jxb:class name="GetTermsResponseType"/>
+        </jxb:bindings>
+        <jxb:schemaBindings>
+            <jxb:package name="com.ensenta.ecpartnerdepositrequest.partnerssorequest" />
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../resources/schema/PartnerSSORequest4.UAT.xsd" node="/xs:schema">
+        <jxb:bindings node="//xs:complexType[@name='Response']">
+            <jxb:class name="ResponseType"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='ArrayOfString']">
+            <jxb:class name="ArrayOfStringType"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='IsUserAuthorizedResponse']">
+            <jxb:class name="IsUserAuthorizedResponseType"/>
+        </jxb:bindings>
+        <jxb:schemaBindings>
+            <jxb:package name="com.ensenta.ecpartnerdepositrequest.deposit" />
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../resources/schema/demo.xsd" node="/xs:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="com.mbronshteyn.ws" />
+        </jxb:schemaBindings>
+    </jxb:bindings>
+</jxb:bindings>

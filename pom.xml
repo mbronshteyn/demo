@@ -56,9 +56,11 @@
                 </executions>
                 <configuration>
                     <!-- The package of your generated sources -->
-                    <packageName>com.mbronshteyn.ws</packageName>
+                    <!-- packageName>com.mbronshteyn.ws</packageName -->
                     <sources>
                         <source>src/main/resources/schema/demo.xsd</source>
+                        <source>src/main/resources/schema/PartnerDepositRequest3.UAT.xsd</source>
+                        <source>src/main/resources/schema/PartnerSSORequest4.UAT.xsd</source>
                     </sources>
                 </configuration>
             </plugin>

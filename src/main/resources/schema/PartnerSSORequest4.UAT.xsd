@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://ensenta.com/ECPartnerDepositRequest/SingleSignon/PartnerSSORequest" elementFormDefault="qualified" targetNamespace="http://ensenta.com/ECPartnerDepositRequest/SingleSignon/PartnerSSORequest" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="StartSession">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="partnerId" type="xs:int" />
+        <xs:element minOccurs="0" maxOccurs="1" name="customerInfo" type="tns:CustomerInfo" />
+        <xs:element minOccurs="0" maxOccurs="1" name="customData" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="CustomerInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountHolderNumber" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Email" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LanguageId" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Accounts" type="tns:Account" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PartnerCustomerId" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DeviceIdentifier" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AccountHolderAttributes" type="tns:AccountHolderAttribute" />
+      <xs:element minOccurs="0" maxOccurs="1" name="UserId" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Account">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountNumber" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountTypeCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountHolderNames" type="tns:ArrayOfString" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Tag" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsValid" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountTypeDescription" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfString">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AccountHolderAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AttributeName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AttributeValue" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StartSessionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="StartSessionResult" type="tns:PartnerSSoResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="PartnerSSoResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Response">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="SessionStateId" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CustomResponseData" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="AccountKeys" type="tns:AccountKey" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsTermsAcceptanceRequired" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsBlackListed" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ReceiptEmail" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomizableMessages" type="tns:CustomizableMessage" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Response">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ResponseCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ErrorResponseText" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LocalizedMessageText" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AccountKey">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountNumberIndex" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Tag" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CustomizableMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="MessageTextCd" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LocalizedText" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IsUserAuthorized">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="partnerId" type="xs:int" />
+        <xs:element minOccurs="0" maxOccurs="1" name="authorizeInfo" type="tns:AuthorizeInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="AuthorizeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountHolderNumber" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LanguageId" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DeviceIdentifier" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IsUserAuthorizedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="IsUserAuthorizedResult" type="tns:IsUserAuthorizedResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="IsUserAuthorizedResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Response" />
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>
